@@ -6,14 +6,14 @@ const itemsGrid = {
                     name: 'feta pasta',
                     labels: 'recipes food healthy',
                     imgSrc: 'img/recipes/feta_pasta.jpg',
-                    link: ''
+                    link: 'https://www.delish.com/cooking/recipe-ideas/a35421563/baked-feta-pasta-tiktok/'
                 },
                 {
                     category: 'recipes',
                     name: 'Honey garlic glazed salmon',
                     labels: 'recipes food healthy',
                     imgSrc: 'img/recipes/honey_garlic_glazed_salmon.jpg',
-                    link: ''
+                    link: 'https://www.delish.com/cooking/recipe-ideas/recipes/a55762/honey-garlic-glazed-salmon-recipe/'
                 },
                 {
                     category: 'places',
@@ -27,7 +27,7 @@ const itemsGrid = {
                     name: 'Chicken Stew',
                     labels: 'recipes food healthy chicken stew',
                     imgSrc: 'img/recipes/chicken_stew.jpg',
-                    link: 'https://www.delish.com/cooking/recipe-ideas/g3166/cheap-easy-recipes/?slide=3'
+                    link: 'https://www.delish.com/cooking/recipe-ideas/recipes/a55316/easy-chicken-stew-recipe/'
                 },
                 {
                     category: 'places',
@@ -58,7 +58,7 @@ buildGrid = (items) => {
 
     items.forEach(item => {
         let htmlItem = `<div class='item' data-category=${item.category} data-labels=${encodeURIComponent(item.labels)}>
-                        <img src=${item.imgSrc}>
+                        <img src=${item.imgSrc} id=${encodeURIComponent(item.name)} onClick='displayOverlay(this.id)'>
                     </div>`
         funcGrid.innerHTML += htmlItem
     })
@@ -97,4 +97,22 @@ window.addEventListener('load', () => {
         const search = e.target.value.toLowerCase()
         grid.filter((item) => item.getElement().dataset.labels.includes(search));
     })
+
+// display overlay on click
+    displayOverlay = (imgId) => {
+        imgId = decodeURIComponent(imgId)
+        let item = itemsGrid.items.find(item => item.name == imgId)
+        let overlay = document.getElementById('overlay')
+        overlay.innerHTML = `<div class='container-img'>
+        <button id='btn-close-popup'><i class="far fa-window-close" onClick='closeOverlay()'></i></button>
+        <img src=${item.imgSrc} alt=''>
+    </div>
+    <a class='description' href=${item.link} target='_blank'>${item.name}</a>`
+    overlay.classList.add('active')
+    }
+
+// Close overlay when click X button
+    closeOverlay = () => {
+        document.getElementById('overlay').classList.remove('active')
+    }
 });

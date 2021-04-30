@@ -97,3 +97,137 @@ header .categories a.active {
     vertical-align: top;
     border-radius: 30px;
 }
+
+
+/*-----------*/
+/* OVERLAY */
+/*-----------*/
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .9);
+    width: 100%;
+    height: 100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.overlay.active {
+    display: flex;
+}
+
+.overlay img {
+    max-width: 100%;
+    height: 450px;
+    width: 400px;
+    border-radius: 25px;
+}
+
+.overlay .description {
+    display: block;
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-top: 5px;
+    border-radius: 10px;
+    max-width: 50%;
+}
+
+.container-img {
+    position: relative;
+}
+
+.container-img #btn-close-popup {
+    background: none;
+    font-size: 20px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: -20px;
+    top: -20px
+}
+
+/*--------------------*/
+/* FOOTER */
+/*--------------------*/
+
+footer .social-media {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+footer .social-media a {
+    display: block;
+    width: 60px;
+    height: 60px;
+    background: #000;
+    color: #fff;
+    margin: 20px;
+    text-align: center;
+    border-radius: 100px;
+    transition: .3s ease all;
+}
+
+footer .social-media a .linkedin{
+    background: #0e76a8;
+}
+
+footer .social-media a i {
+    font-size: 20px;
+    line-height: 60px;
+}
+
+footer .container-icon:hover a {
+    animation: icon .5s ease;
+}
+
+@keyframes icon {
+    from {
+        transform: rotate3d(0,0,0,0);
+    }
+
+    to {
+        transform: rotate3d(0,1,0, 360deg);
+    }
+}
+
+footer .created-by {
+    margin-bottom: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #000;
+}
+
+/*--------------------*/
+/* Mediaqueries */
+/*--------------------*/
+
+@media screen and (max-width: 700px) {
+    .grid .item {
+        width: calc(50% - 20px);
+    }
+
+    header .search-bar {
+        width: 100%;
+    }
+
+    .overlay img {
+        height: 250px;
+        width: 200px;
+    }
+
+    .grid .item img {
+        height: 150px;
+    }
+}
